@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000">
+<title>Invitación · Asado navideño</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#650014,#16050a 55%,#050505);color:#fff5f5;font-family:Arial,sans-serif}.hidden{display:none!important}
+#cover{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;text-align:center;padding:24px;z-index:10}#cover h1{font-size:clamp(25px,6vw,42px);letter-spacing:2px}
+button,.btn{border:0;border-radius:14px;padding:16px 20px;font-weight:bold;font-size:16px;cursor:pointer;text-decoration:none;text-align:center}#open,.confirm{background:linear-gradient(135deg,#ff2448,#a9001c);color:white;box-shadow:0 0 24px #e5092d55}
+main{max-width:650px;margin:28px auto;padding:0 16px 35px}.panel{background:linear-gradient(155deg,#a9001c,#30040d 58%,#09090c);border:1px solid #ff637b88;border-radius:26px;overflow:hidden;box-shadow:0 20px 60px #0009}
+header{text-align:center;padding:30px 18px 20px}.lights{letter-spacing:10px;color:#ffd15a;animation:glow 1.2s infinite alternate}@keyframes glow{to{opacity:.45}}.santa{font-size:80px;animation:float 2s ease-in-out infinite}@keyframes float{50%{transform:translateY(-9px) rotate(4deg)}}
+h1{margin:8px 0;font-size:clamp(32px,8vw,48px);text-transform:uppercase}.sub{color:#ffd9df}.content{padding:12px 20px 24px}.intro{text-align:center;line-height:1.5}.price,.detail,.note{background:#0b080b99;border:1px solid #ff829455;border-radius:16px;padding:16px;margin:12px 0}.price{text-align:center}.price strong{display:block;font-size:40px}.details{display:grid;grid-template-columns:1fr 1fr;gap:10px}.detail small{display:block;color:#ffb7c2;font-weight:bold;margin:7px 0}.place{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;color:white;background:#171217;width:100%;text-align:left}.question{background:#e5092d;border-radius:50%;width:42px;height:42px;display:grid;place-items:center;font-size:25px}.note{line-height:1.5;color:#ffe0e5}.actions{display:grid;gap:12px;margin-top:18px}.confirm{display:block}.secondary{background:#171217;color:white;border:1px solid #813040}.snow{position:fixed;inset:0;pointer-events:none;overflow:hidden}.flake{position:absolute;top:-15px;color:white;animation:fall linear infinite}@keyframes fall{to{transform:translateY(105vh)}}.footer{text-align:center;color:#e9aab5;font-size:12px;margin-top:16px}
+@media(max-width:420px){.details{grid-template-columns:1fr}.place{grid-column:auto}}
+</style>
+</head>
+<body>
+<div id="cover"><h1>Una sorpresa navideña te espera</h1><button id="open">🎄 ABRIR INVITACIÓN 🎄</button></div>
+<div class="snow" id="snow"></div>
+<main id="invitation" class="hidden"><div class="panel">
+<header><div class="lights">● ● ● ● ● ● ●</div><div class="santa">🎅</div><h1>¡Asado<br>navideño!</h1><div class="sub">La Navidad se vive en fiesta</div><p>🎄 ¡ESTÁS INVITADO! 🎄</p></header>
+<div class="content">
+<p class="intro">Se acerca una noche para reunirnos, compartir algo delicioso y celebrar juntos. ¡No faltes!</p>
+<div class="price"><small>VALOR POR PERSONA</small><strong>$30.000</strong>Incluye tu entrada al asado navideño</div>
+<div class="note"><b>⏳ ¡Reserva tu puesto!</b><br>El pago debe realizarse antes del <b>5 de diciembre</b> para guardar tu puesto.</div>
+<div class="details">
+<div class="detail">📅<small>FECHA</small><b>12 de diciembre de 2026</b></div>
+<div class="detail">🕖<small>HORA</small><b>7:00 de la noche</b></div>
+<button class="detail place" id="place" aria-expanded="false"><span>📍<small>LUGAR DEL ENCUENTRO</small><b>¡Descúbrelo pronto!</b></span><span class="question">?</span></button>
+</div>
+<div class="note"><b>🎁 ¡Un detalle para compartir!</b><br>Trae buñuelos, natilla o algún acompañamiento navideño para ponerle más sabor a nuestra celebración.</div>
+<div class="note"><b>🎅🎁 ¡También tendremos juego de amigo secreto!</b><br>Prepárate para compartir, sorprender y divertirte con todos.</div>
+<div class="actions">
+<a class="btn confirm" href="https://wa.me/573169048982?text=Hola%2C%20confirmo%20mi%20asistencia%2C%20mi%20nombre%20es%3A" target="_blank" rel="noopener noreferrer">🎉 CONFIRMAR ASISTENCIA POR WHATSAPP</a>
+<button class="secondary" id="more">❓ MÁS INFORMACIÓN</button>
+</div>
+<div class="note hidden" id="placeInfo">🤫 ¡El lugar es una sorpresa! Pronto se revelarán los detalles.</div>
+<div class="note hidden" id="moreInfo">Prepara tu mejor energía navideña y ven con ganas de pasarla bueno. ¡Te esperamos!</div>
+<p class="footer">❤️ ROJO • 🖤 NEGRO • 🎅 ESPÍRITU NAVIDEÑO</p>
+</div></div></main>
+<script>
+document.getElementById('open').addEventListener('click',()=>{document.getElementById('cover').classList.add('hidden');document.getElementById('invitation').classList.remove('hidden')});
+document.getElementById('place').addEventListener('click',()=>document.getElementById('placeInfo').classList.toggle('hidden'));
+document.getElementById('more').addEventListener('click',()=>document.getElementById('moreInfo').classList.toggle('hidden'));
+for(let i=0;i<30;i++){let f=document.createElement('span');f.className='flake';f.textContent='❄';f.style.left=Math.random()*100+'%';f.style.fontSize=(9+Math.random()*13)+'px';f.style.animationDuration=(8+Math.random()*9)+'s';f.style.animationDelay=(-Math.random()*15)+'s';document.getElementById('snow').appendChild(f)}
+</script>
+</body></html>
